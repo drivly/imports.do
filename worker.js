@@ -8,18 +8,10 @@ router
   .all('*', withDurables())
 
   // get the durable itself... returns json response, so no need to wrap
-  .get('/', ({ Counter }) => Counter.get('test').toJSON())
+  .get('/', ({ Counter }) => Data.get('test').toJSON())
 
   // By using { autoReturn: true } in createDurable(), this method returns the contents
   .get('/increment', ({ Counter }) => Counter.get('test').increment())
-
-  // you can pass any serializable params to a method... (e.g. /counter/add/3/4 => 7)
-  .get('/add/:a?/:b?', withParams,
-    ({ Counter, a, b }) => Counter.get('test').add(Number(a), Number(b))
-  )
-
-  // reset the durable
-  .get('/reset', ({ Counter }) => Counter.get('test').reset())
 
   // 404 for everything else
   .all('*', () => missing('Are you sure about that?'))
