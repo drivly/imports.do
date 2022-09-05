@@ -1,0 +1,7 @@
+{  
+  "dependencies": {
+    "itty-durable": "^1.2.0",
+    "itty-router": "^2.6.1",
+    "itty-router-extras": "^0.4.2"
+  }
+}
